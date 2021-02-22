@@ -15,12 +15,31 @@ describe('posts [query](e2e)', () => {
     await app.init();
   });
 
+  const query =
+    '{ \
+    posts { \
+      id \
+      text \
+      title \
+      imageUrl \
+      created \
+      category { \
+        id \
+        name \
+      } \
+      user { \
+        id \
+        firstName \
+        lastName \
+      } \
+    } \
+  }';
+
   it('should return valid array of posts', () => {
     return request(app.getHttpServer())
       .post('/graphql')
       .send({
-        query:
-          '{ posts { id text title imageUrl created category { id name }user { id firstName lastName }}}',
+        query: query,
       })
       .expect(200)
       .expect(({ body }) => {

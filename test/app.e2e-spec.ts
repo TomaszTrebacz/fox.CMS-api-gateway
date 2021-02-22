@@ -15,10 +15,35 @@ describe('AppController (e2e)', () => {
     await app.init();
   });
 
-  it('/ (GET)', () => {
+  it('/graphql (POST) sayHello', () => {
     return request(app.getHttpServer())
-      .get('/')
+      .post('/graphql')
+      .send({
+        query:
+          '{ posts { id text title imageUrl created category { id name }user { id firstName lastName }}}',
+      })
       .expect(200)
-      .expect('Hello World!');
+      .expect(({ body }) => {
+        expect(body.data.posts).toEqual(
+          expect.arrayContaining([
+            expect.objectContaining({
+              id: expect.any(Number),
+              title: expect.any(String),
+              text: expect.any(String),
+              imageUrl: expect.any(String),
+              created: expect.any(String),
+              user: expect.objectContaining({
+                id: expect.any(String),
+                firstName: expect.any(String),
+                lastName: expect.any(String),
+              }),
+              category: expect.objectContaining({
+                id: expect.any(Number),
+                name: expect.any(String),
+              }),
+            }),
+          ]),
+        );
+      });
   });
 });

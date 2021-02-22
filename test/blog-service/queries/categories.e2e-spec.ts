@@ -38,10 +38,12 @@ describe('posts [query](e2e)', () => {
           expect.arrayContaining([
             expect.objectContaining({
               name: expect.any(String),
-              posts: expect.objectContaining({
-                title: expect.any(String),
-                text: expect.any(String),
-              }),
+              posts: expect.arrayContaining([
+                expect.objectContaining({
+                  title: expect.any(String),
+                  text: expect.any(String),
+                }),
+              ]),
             }),
           ]),
         );

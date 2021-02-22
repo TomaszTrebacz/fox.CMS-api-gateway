@@ -30,6 +30,7 @@
     "@nestjs/platform-express": "^7.0.0",
     "@tomasztrebacz/nest-auth-graphql-redis": "file:../../GitHub/nest-auth-graphql-redis",
     "apollo-server-express": "^2.19.2",
+    "faker": "^5.4.0",
     "graphql": "^15.5.0",
     "graphql-tools": "^7.0.2",
     "reflect-metadata": "^0.1.13",

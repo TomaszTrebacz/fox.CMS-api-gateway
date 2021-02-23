@@ -1,11 +1,6 @@
-export const confirmedUserToken = async (request, app) => {
-  const query =
-    'query ($input: LoginInput) { \
-        login(loginCredentials: $input) { \
-            accessToken \
-        }\
-    }';
+import { query } from './login.query';
 
+export const confirmedUserToken = async (request, app) => {
   const response = await request(app.getHttpServer())
     .post('/graphql')
     .send({

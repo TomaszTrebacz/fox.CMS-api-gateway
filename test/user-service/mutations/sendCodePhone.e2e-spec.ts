@@ -32,7 +32,7 @@ describe('sendCodePhone [mutation](e2e)', () => {
         })
         .expect(200)
         .expect(({ body }) => {
-          expect(body.data.sendCodePone).toBeTruthy();
+          expect(body.data.sendCodePhone).toBeTruthy();
         });
     });
   });

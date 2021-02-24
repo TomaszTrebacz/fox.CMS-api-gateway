@@ -2,6 +2,7 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { INestApplication } from '@nestjs/common';
 import * as request from 'supertest';
 import { AppModule } from '../../../src/app.module';
+import { confirmedUserToken } from 'test/utils';
 
 describe('logout [mutation](e2e)', () => {
   let app: INestApplication;
@@ -20,13 +21,14 @@ describe('logout [mutation](e2e)', () => {
      }';
 
   describe('if user is logged', () => {
-    it('should return true', () => {
-      return request(app.getHttpServer())
+    it('should return true', async () => {
+      await confirmedUserToken(request, app);
+      return await request(app.getHttpServer())
         .post('/graphql')
         .send({
           query: mutation,
           variables: {
-            id: '8055d923-0cfd-40e9-879e-638e8ffc7475',
+            id: 'ded8dc2f-ab3b-49a5-8f14-34bf89bc20ca',
           },
         })
         .expect(200)

@@ -34,7 +34,7 @@ describe('sendCodePhone [mutation](e2e)', () => {
         .expect(({ body }) => {
           expect(body.data.sendCodePhone).toBeTruthy();
         });
-    });
+    }, 20000);
   });
   describe('otherwise', () => {
     it('should throw the error', () => {

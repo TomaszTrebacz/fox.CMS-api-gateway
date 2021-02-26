@@ -7,8 +7,7 @@ import * as faker from 'faker';
 
 describe('deleteCategory [mutation](e2e)', () => {
   let app: INestApplication;
-  let token: String;
-  let categoryName: String;
+  let token: string;
 
   beforeAll(async () => {
     const moduleFixture: TestingModule = await Test.createTestingModule({
@@ -19,7 +18,6 @@ describe('deleteCategory [mutation](e2e)', () => {
     await app.init();
 
     token = await adminToken(request, app);
-    categoryName = await faker.lorem.words(2);
   });
 
   const mutation =

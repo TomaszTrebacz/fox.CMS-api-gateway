@@ -7,7 +7,7 @@ import { customUserToken } from 'test/utils';
 
 describe('updateUser [mutation](e2e)', () => {
   let app: INestApplication;
-  var token: string;
+  let token: string;
 
   beforeAll(async () => {
     const moduleFixture: TestingModule = await Test.createTestingModule({

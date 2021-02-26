@@ -3,12 +3,11 @@ import { INestApplication } from '@nestjs/common';
 import * as request from 'supertest';
 import { AppModule } from '../../../src/app.module';
 import { adminToken, confirmedUserToken } from 'test/utils';
-import * as faker from 'faker';
 
 describe('createCategory [mutation](e2e)', () => {
   let app: INestApplication;
-  let token: String;
-  let categoryName: String;
+  let token: string;
+  let categoryName: string;
 
   beforeAll(async () => {
     const moduleFixture: TestingModule = await Test.createTestingModule({
@@ -19,7 +18,7 @@ describe('createCategory [mutation](e2e)', () => {
     await app.init();
 
     token = await adminToken(request, app);
-    categoryName = await faker.lorem.words(2);
+    categoryName = 'newCategory';
   });
 
   const mutation =

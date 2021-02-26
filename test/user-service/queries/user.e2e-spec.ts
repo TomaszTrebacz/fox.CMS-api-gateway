@@ -42,7 +42,7 @@ describe('user [query](e2e)', () => {
             firstName: 'Charles',
             lastName: 'Williams',
             phoneNumber: '+15005550006',
-            created: '2021-02-16',
+            created: expect.any(String),
           });
         });
     });

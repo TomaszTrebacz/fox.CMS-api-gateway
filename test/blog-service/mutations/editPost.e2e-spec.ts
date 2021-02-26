@@ -7,9 +7,9 @@ import * as faker from 'faker';
 
 describe('editPost [mutation](e2e)', () => {
   let app: INestApplication;
-  let token: String;
-  let postName: String;
-  let text: String;
+  let token: string;
+  let postName: string;
+  let text: string;
 
   beforeAll(async () => {
     const moduleFixture: TestingModule = await Test.createTestingModule({
@@ -20,7 +20,7 @@ describe('editPost [mutation](e2e)', () => {
     await app.init();
 
     token = await adminToken(request, app);
-    postName = await faker.lorem.words(5);
+    postName = await faker.lorem.words(4);
     text = await faker.lorem.words(20);
   });
 
@@ -38,7 +38,7 @@ describe('editPost [mutation](e2e)', () => {
           query: mutation,
           variables: {
             input: {
-              id: 4,
+              id: 5,
               title: postName,
               text: text,
             },

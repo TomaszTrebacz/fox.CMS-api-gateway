@@ -6,7 +6,7 @@ import { adminToken, rootToken } from 'test/utils';
 
 describe('deleteUserPosts [mutation](e2e)', () => {
   let app: INestApplication;
-  let token: String;
+  let token: string;
 
   beforeAll(async () => {
     const moduleFixture: TestingModule = await Test.createTestingModule({
@@ -31,12 +31,11 @@ describe('deleteUserPosts [mutation](e2e)', () => {
         .send({
           query: mutation,
           variables: {
-            id: '3d248dbc-4475-46e1-8361-6273d0f1fa9c',
+            id: '2bac1170-827d-49ad-b7a3-9c76e6ad83e9',
           },
         })
         .expect(200)
         .expect(({ body }) => {
-          console.log(body.data);
           expect(body.data.deleteUserPosts).toBeTruthy();
         });
     });

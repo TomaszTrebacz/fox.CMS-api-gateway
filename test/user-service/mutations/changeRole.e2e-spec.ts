@@ -6,8 +6,8 @@ import { adminToken, rootToken } from 'test/utils';
 
 describe('updateUser [mutation](e2e)', () => {
   let app: INestApplication;
-  var rootJWT: string;
-  var adminJWT: string;
+  let rootJWT: string;
+  let adminJWT: string;
 
   beforeAll(async () => {
     const moduleFixture: TestingModule = await Test.createTestingModule({

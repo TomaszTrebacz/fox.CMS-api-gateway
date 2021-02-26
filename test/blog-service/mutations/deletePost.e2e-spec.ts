@@ -6,7 +6,7 @@ import { adminToken, confirmedUserToken } from 'test/utils';
 
 describe('deletePost [mutation](e2e)', () => {
   let app: INestApplication;
-  let token: String;
+  let token: string;
 
   beforeEach(async () => {
     const moduleFixture: TestingModule = await Test.createTestingModule({
@@ -30,7 +30,7 @@ describe('deletePost [mutation](e2e)', () => {
         .send({
           query: mutation,
           variables: {
-            id: 21,
+            id: 6,
           },
         })
         .expect(200)

@@ -7,8 +7,8 @@ import * as faker from 'faker';
 
 describe('editCategory [mutation](e2e)', () => {
   let app: INestApplication;
-  let token: String;
-  let categoryName: String;
+  let token: string;
+  let categoryName: string;
 
   beforeAll(async () => {
     const moduleFixture: TestingModule = await Test.createTestingModule({

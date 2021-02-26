@@ -7,9 +7,9 @@ import * as faker from 'faker';
 
 describe('createPost [mutation](e2e)', () => {
   let app: INestApplication;
-  let token: String;
-  let postName: String;
-  let text: String;
+  let token: string;
+  let postName: string;
+  let text: string;
 
   beforeAll(async () => {
     const moduleFixture: TestingModule = await Test.createTestingModule({

@@ -6,7 +6,7 @@ import { adminToken, confirmedUserToken } from 'test/utils';
 
 describe('changeCategoryPost [mutation](e2e)', () => {
   let app: INestApplication;
-  let token: String;
+  let token: string;
 
   beforeAll(async () => {
     const moduleFixture: TestingModule = await Test.createTestingModule({

@@ -20,7 +20,7 @@ class AuthenticatedDataSource extends RemoteGraphQLDataSource {
     {
       provide: GATEWAY_BUILD_SERVICE,
       useFactory: AuthenticatedDataSource => {
-        return ({ name, url }) => new AuthenticatedDataSource({ url });
+        return ({ url }) => new AuthenticatedDataSource({ url });
       },
       inject: [AuthenticatedDataSource],
     },

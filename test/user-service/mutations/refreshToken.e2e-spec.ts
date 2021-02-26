@@ -2,6 +2,7 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { INestApplication } from '@nestjs/common';
 import * as request from 'supertest';
 import { AppModule } from '../../../src/app.module';
+import { confirmedUserToken } from 'test/utils';
 
 describe('refreshToken [mutation](e2e)', () => {
   let app: INestApplication;
@@ -23,17 +24,17 @@ describe('refreshToken [mutation](e2e)', () => {
         } \
       }';
 
+  const loginQuery =
+    'query ($input: LoginInput) { \
+           login(loginCredentials: $input) { \
+               accessToken \
+               refreshToken \
+           }\
+       }';
+
   describe('if refresh token is valid', () => {
     it('should return new pair of tokens', async () => {
       // sign in & get valid refresh token
-      const loginQuery =
-        'query ($input: LoginInput) { \
-             login(loginCredentials: $input) { \
-                 accessToken \
-                 refreshToken \
-             }\
-         }';
-
       const res = await request(app.getHttpServer())
         .post('/graphql')
         .send({
@@ -68,6 +69,25 @@ describe('refreshToken [mutation](e2e)', () => {
 
   describe('otherwise', () => {
     describe('if refresh token is not valid', () => {
+      it('should throw the error', () => {
+        return request(app.getHttpServer())
+          .post('/graphql')
+          .send({
+            query: mutation,
+            variables: {
+              token:
+                'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c',
+            },
+          })
+          .expect(200)
+          .expect(res => {
+            expect(res.body.errors[0].message).toEqual(
+              `Can not send new pair of tokens: Unauthorized`,
+            );
+          });
+      });
+    });
+    describe('if refresh token is expired', () => {
       it('should throw the error', () => {
         return request(app.getHttpServer())
           .post('/graphql')

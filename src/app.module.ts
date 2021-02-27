@@ -2,6 +2,9 @@ import { Module } from '@nestjs/common';
 import { GATEWAY_BUILD_SERVICE, GraphQLGatewayModule } from '@nestjs/graphql';
 import { RemoteGraphQLDataSource } from '@apollo/gateway';
 import { ConfigModule } from '@nestjs/config';
+import { ThrottlerModule } from '@nestjs/throttler';
+import { APP_GUARD } from '@nestjs/core';
+import { GqlThrottlerGuard } from './guards/throttler.guard';
 
 class AuthenticatedDataSource extends RemoteGraphQLDataSource {
   async willSendRequest({ request, context }) {
@@ -32,6 +35,10 @@ class BuildServiceModule {}
 @Module({
   imports: [
     ConfigModule.forRoot(),
+    ThrottlerModule.forRoot({
+      ttl: 60,
+      limit: 500,
+    }),
     GraphQLGatewayModule.forRootAsync({
       useFactory: async () => ({
         cors: {
@@ -53,6 +60,12 @@ class BuildServiceModule {}
       imports: [BuildServiceModule],
       inject: [GATEWAY_BUILD_SERVICE],
     }),
+  ],
+  providers: [
+    {
+      provide: APP_GUARD,
+      useClass: GqlThrottlerGuard,
+    },
   ],
 })
 export class AppModule {}

@@ -34,6 +34,10 @@ class BuildServiceModule {}
     ConfigModule.forRoot(),
     GraphQLGatewayModule.forRootAsync({
       useFactory: async () => ({
+        cors: {
+          origin: 'http://localhost:3000',
+          credentials: true,
+        },
         gateway: {
           serviceList: [
             { name: 'users', url: process.env.USER_URL },

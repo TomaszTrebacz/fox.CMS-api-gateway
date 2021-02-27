@@ -26,9 +26,9 @@ BLOG_URL=
 npm install
 ```
 
-2. Make sure that <a href="https://github.com/TomaszTrebacz/fox.CMS-user-service">user-service</a> and <a href="https://github.com/TomaszTrebacz/fox.CMS-blog-service">blog-service</a> are listening.
+3. Make sure that <a href="https://github.com/TomaszTrebacz/fox.CMS-user-service">user-service</a> and <a href="https://github.com/TomaszTrebacz/fox.CMS-blog-service">blog-service</a> are listening.
 
-3. Run the app:
+4. Run the app:
 
 ```ts
 npm run start:dev
@@ -37,3 +37,10 @@ npm run start:dev
 ## Testing
 
 As I mentioned before, in api-gateway are placed all e2e tests which refer to other microservices. Please, read <a href="https://github.com/TomaszTrebacz/fox.CMS">README.MD in main repository</a> to learn how to test whole app.
+
+The result:
+
+<p align="center">
+<img src="https://i.ibb.co/5kCDs5v/test.png" alt="Tests" />
+
+</p>
